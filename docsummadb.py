@@ -1,4 +1,5 @@
 import logging as lg
+import chromadb
 
 from pathlib import Path
 from csv import reader
