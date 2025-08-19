@@ -16,12 +16,25 @@ def main():
     lg.info("Hello from docsummadb!")
     lg.info(f"CSV file path: {csv_file}")
 
+    # Open the Chroma db
+    db_dir = Path.cwd() / "db" / "mydb"
+    db = chromadb.PersistentClient(path=db_dir)
+    from chromadb.api.types import EmbeddingFunction
+
+    collection = db.get_or_create_collection(name="my_collection")
+
     with open(csv_file, newline='', encoding='utf-8') as ff:
         csv_reader = reader(ff, dialect='unix')
+        next(csv_reader)  # Skip header row
         for row in csv_reader:
             fname = Path(row[0]).name
             fname_id = sha1(fname.encode()).hexdigest()
-            print(f"File: {fname}, ID: {fname_id}")
+            lg.info(f"Processing file: {fname} with ID: {fname_id}")
+            collection.add(
+                ids=[fname_id],
+                documents=[row[1]],
+                metadatas=[{"name": fname}],
+            )
 
 if __name__ == "__main__":
     main()
