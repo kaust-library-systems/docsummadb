@@ -19,7 +19,7 @@ def main():
     # Open the Chroma db
     db_dir = Path.cwd() / "db"
     db = chromadb.PersistentClient(path=db_dir)
-    from chromadb.api.types import EmbeddingFunction
+    # from chromadb.api.types import EmbeddingFunction
 
     collection = db.get_or_create_collection(name="archives")
 
