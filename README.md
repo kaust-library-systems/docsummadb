@@ -31,14 +31,19 @@ Checking the collection first:
 >>> 
 ```
 
+Start the server locally:
+
+```
+(docsummadb) mgarcia@PC-KL-26743:~/Work/docsummadb$ chroma run --path db
+(...)
+Saving data to: db
+Connect to Chroma at: http://localhost:8000
+```
+
 Loading the collection on the browser:
 
 ```
-(docsummadb) mgarcia@PC-KL-26743:~/Work/docsummadb/db$ chroma browse archives --path "."
-
-OpenTelemetry is not enabled because it is missing from the config.
-
-(docsummadb) mgarcia@PC-KL-26743:~/Work/docsummadb/db$
+(docsummadb) mgarcia@PC-KL-26743:~/Work/docsummadb$ chroma browse archives --local
 ```
 
 
